@@ -1,7 +1,7 @@
 
 # Functions using dotNET 5.0
 
-Simplest possible test of using F#
+Simplest possible test of using F# - _*n.b. THIS DOES NOT WORK (at time of commit)* - code is the least needed to demonstrate that it doesn't_ 
 
 Following the CLI instructions from [Develop and publish .NET 5 functions using Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-developer-howtos?pivots=development-environment-cli&tabs=browser)
 
