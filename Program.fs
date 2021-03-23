@@ -1,19 +1,17 @@
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Azure.Functions.Worker.Configuration;
-
 namespace fsharp_isolated
-{
-    public class Program
-    {
-        public static void Main()
-        {
-            var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
-                .Build();
 
-            host.Run();
-        }
-    }
-}
+open System.Threading.Tasks;
+open Microsoft.Extensions.Configuration;
+open Microsoft.Extensions.Hosting;
+open Microsoft.Azure.Functions.Worker.Configuration;
+
+module Program =
+    [<EntryPoint>]
+    let main _ =
+        let hostBuilder = new HostBuilder()
+        hostBuilder.ConfigureFunctionsWorkerDefaults() |> ignore
+
+        let host = hostBuilder.Build()
+        host.Run()
+
+        0

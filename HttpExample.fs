@@ -1,26 +1,21 @@
-using System.Collections.Generic;
-using System.Net;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Extensions.Logging;
-
 namespace fsharp_isolated
-{
-    public static class HttpExample
-    {
-        [Function("HttpExample")]
-        public static HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
-            FunctionContext executionContext)
-        {
-            var logger = executionContext.GetLogger("HttpExample");
-            logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+open System.Collections.Generic;
+open System.Net;
+open Microsoft.Azure.Functions.Worker;
+open Microsoft.Azure.Functions.Worker.Http;
+open Microsoft.Extensions.Logging;
 
-            response.WriteString("Welcome to Azure Functions!");
+module HttpExample =
 
-            return response;
-        }
-    }
-}
+   [<Function("HttpExample")>]
+   let Run ([<HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")>] req : HttpRequestData , executionContext : FunctionContext ) : HttpResponseData =
+        let logger = executionContext.GetLogger("HttpExample")
+        logger.LogInformation("F# HTTP trigger function processed a request.")
+
+        let response = req.CreateResponse(HttpStatusCode.OK)
+        response.Headers.Add("Content-Type", "text/plain; charset=utf-8")
+
+        response.WriteString("Welcome to Azure Functions!")
+
+        response
